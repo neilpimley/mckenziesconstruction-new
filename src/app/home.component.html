@@ -238,19 +238,30 @@
           </div>
         </div>
         <div class="col-lg-7">
-          <form class="contact-form" aria-label="Project enquiry form">
+          <form class="contact-form" aria-label="Project enquiry form"
+                [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+            <!-- Netlify honeypot -->
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden>
+              <label>Don't fill this out: <input name="bot-field" formControlName="botField" /></label>
+            </p>
+
             <div class="row g-3">
               <div class="col-md-6">
-                <label for="name" class="form-label">Name</label>
-                <input id="name" class="form-control" type="text" placeholder="Your name" />
+                <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                <input id="name" class="form-control" type="text" placeholder="Your name"
+                       formControlName="name"
+                       [class.is-invalid]="enquiryForm.get('name')!.invalid && enquiryForm.get('name')!.touched" />
+                <div class="invalid-feedback">Please enter your name.</div>
               </div>
               <div class="col-md-6">
                 <label for="phone" class="form-label">Phone</label>
-                <input id="phone" class="form-control" type="tel" placeholder="Your phone number" />
+                <input id="phone" class="form-control" type="tel" placeholder="Your phone number"
+                       formControlName="phone" />
               </div>
               <div class="col-12">
                 <label for="projectType" class="form-label">Project type</label>
-                <select id="projectType" class="form-select">
+                <select id="projectType" class="form-select" formControlName="projectType">
                   <option>Home extension</option>
                   <option>Renovation</option>
                   <option>Commercial works</option>
@@ -258,14 +269,40 @@
                 </select>
               </div>
               <div class="col-12">
-                <label for="message" class="form-label">Project details</label>
-                <textarea id="message" class="form-control" rows="4" placeholder="Tell us about the site, timeline and work needed"></textarea>
+                <label for="message" class="form-label">Project details <span class="text-danger">*</span></label>
+                <textarea id="message" class="form-control" rows="4"
+                          placeholder="Tell us about the site, timeline and work needed"
+                          formControlName="message"
+                          [class.is-invalid]="enquiryForm.get('message')!.invalid && enquiryForm.get('message')!.touched"></textarea>
+                <div class="invalid-feedback">Please describe your project.</div>
               </div>
               <div class="col-12">
-                <button class="btn btn-warning btn-lg w-100" type="submit">
-                  <i class="bi bi-send-fill" aria-hidden="true"></i>
-                  Send enquiry
+                <button class="btn btn-warning btn-lg w-100" type="submit"
+                        [disabled]="submitState === 'sending'">
+                  <span *ngIf="submitState !== 'sending'">
+                    <i class="bi bi-send-fill" aria-hidden="true"></i>
+                    Send enquiry
+                  </span>
+                  <span *ngIf="submitState === 'sending'">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Sending&hellip;
+                  </span>
                 </button>
+              </div>
+
+              <div *ngIf="submitState === 'success'" class="col-12">
+                <div class="alert alert-success mb-0" role="alert">
+                  <i class="bi bi-check-circle-fill me-2" aria-hidden="true"></i>
+                  Thanks — we'll be in touch shortly.
+                </div>
+              </div>
+              <div *ngIf="submitState === 'error'" class="col-12">
+                <div class="alert alert-danger mb-0" role="alert">
+                  <i class="bi bi-exclamation-triangle-fill me-2" aria-hidden="true"></i>
+                  Something went wrong. Please email
+                  <a href="mailto:sean@mckenziesconstruction.co.uk">sean&#64;mckenziesconstruction.co.uk</a>
+                  directly.
+                </div>
               </div>
             </div>
           </form>

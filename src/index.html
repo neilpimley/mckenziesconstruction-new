@@ -12,6 +12,15 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+  <!-- Hidden form so Netlify detects fields at build time (required for Angular SPAs) -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="tel" name="phone" />
+    <select name="projectType"></select>
+    <textarea name="message"></textarea>
+    <input name="bot-field" />
+  </form>
+
   <app-root></app-root>
 </body>
 </html>
