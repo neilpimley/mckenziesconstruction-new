@@ -167,8 +167,15 @@
           <p>{{ album.summary }}</p>
 
           <div class="album-grid" *ngIf="album.images.length; else emptyAlbum">
-            <a class="gallery-image" *ngFor="let image of album.images" [href]="image.src" target="_blank" rel="noopener">
+            <a class="gallery-image" *ngFor="let image of previewImages(album)" [href]="image.src" target="_blank" rel="noopener">
               <img [src]="image.src" [alt]="image.alt" loading="lazy" />
+            </a>
+          </div>
+
+          <div class="album-actions" *ngIf="album.images.length > 6">
+            <a class="btn btn-dark" [routerLink]="['/gallery', album.folder]">
+              <i class="bi bi-images" aria-hidden="true"></i>
+              View full gallery
             </a>
           </div>
 

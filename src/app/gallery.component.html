@@ -1,0 +1,39 @@
+<main class="gallery-page">
+  <section class="page-hero gallery-page-hero" [style.background-image]="heroBackground">
+    <div class="container">
+      <a class="btn btn-outline-light back-link" [routerLink]="['/']" fragment="gallery">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        Back to home
+      </a>
+
+      <ng-container *ngIf="album; else missingAlbum">
+        <div class="gallery-page-header">
+          <p class="eyebrow">Project gallery</p>
+          <h1>{{ album.title }}</h1>
+          <p class="lead">{{ album.summary }}</p>
+          <span>{{ album.images.length }} photos</span>
+        </div>
+      </ng-container>
+    </div>
+  </section>
+
+  <ng-container *ngIf="album">
+    <section class="section gallery-page-section">
+      <div class="container">
+        <div class="gallery-page-grid">
+          <a class="gallery-image" *ngFor="let image of album.images" [href]="image.src" target="_blank" rel="noopener">
+            <img [src]="image.src" [alt]="image.alt" loading="lazy" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+
+  <ng-template #missingAlbum>
+    <div class="not-found-panel">
+      <p class="eyebrow">Gallery not found</p>
+      <h1>Project gallery unavailable</h1>
+      <p class="lead">Return to the home page to browse the available project albums.</p>
+    </div>
+  </ng-template>
+</main>

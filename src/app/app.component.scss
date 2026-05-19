@@ -429,6 +429,16 @@ h3 {
   margin-top: 1.25rem;
 }
 
+.album-actions {
+  margin-top: 1.25rem;
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+}
+
 .gallery-image {
   display: block;
   overflow: hidden;
@@ -447,6 +457,52 @@ h3 {
   &:focus img {
     transform: scale(1.04);
   }
+}
+
+.gallery-page-hero {
+  padding-bottom: 4rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 2rem;
+}
+
+.gallery-page-header {
+  max-width: 920px;
+
+  h1 {
+    max-width: 12ch;
+  }
+
+  span {
+    display: inline-flex;
+    padding: 0.4rem 0.7rem;
+    color: var(--mc-ink);
+    background: var(--mc-yellow);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 900;
+  }
+}
+
+.gallery-page-section {
+  background: var(--mc-paper);
+}
+
+.gallery-page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+
+.not-found-panel {
+  max-width: 860px;
 }
 
 .empty-album {
