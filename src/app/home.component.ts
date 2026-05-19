@@ -20,6 +20,8 @@ interface ServiceDetail {
 export class HomeComponent {
   private http = inject(HttpClient);
   private fb = inject(FormBuilder);
+  activeAlbum: GalleryAlbum | null = null;
+  activeImageIndex = 0;
 
   services: ServiceDetail[] = [
     {
@@ -75,6 +77,39 @@ export class HomeComponent {
 
   previewImages(album: GalleryAlbum): GalleryImage[] {
     return album.images.slice(0, 6);
+  }
+
+  get activeImage(): GalleryImage | null {
+    return this.activeAlbum?.images[this.activeImageIndex] ?? null;
+  }
+
+  openGalleryModal(album: GalleryAlbum, image: GalleryImage): void {
+    const imageIndex = album.images.indexOf(image);
+
+    this.activeAlbum = album;
+    this.activeImageIndex = imageIndex >= 0 ? imageIndex : 0;
+  }
+
+  closeGalleryModal(): void {
+    this.activeAlbum = null;
+    this.activeImageIndex = 0;
+  }
+
+  showPreviousImage(): void {
+    if (!this.activeAlbum?.images.length) {
+      return;
+    }
+
+    this.activeImageIndex =
+      (this.activeImageIndex - 1 + this.activeAlbum.images.length) % this.activeAlbum.images.length;
+  }
+
+  showNextImage(): void {
+    if (!this.activeAlbum?.images.length) {
+      return;
+    }
+
+    this.activeImageIndex = (this.activeImageIndex + 1) % this.activeAlbum.images.length;
   }
 
   onSubmit(): void {

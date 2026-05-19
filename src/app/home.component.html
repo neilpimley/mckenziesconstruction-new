@@ -110,15 +110,15 @@
           <p>{{ album.summary }}</p>
 
           <div class="album-grid" *ngIf="album.images.length; else emptyAlbum">
-            <a class="gallery-image" *ngFor="let image of previewImages(album)" [href]="image.src" target="_blank" rel="noopener">
+            <button class="gallery-image" type="button" *ngFor="let image of previewImages(album)" (click)="openGalleryModal(album, image)">
               <img [src]="image.src" [alt]="image.alt" loading="lazy" />
-            </a>
+            </button>
           </div>
 
           <div class="album-actions" *ngIf="album.images.length > 6">
             <a class="btn btn-dark" [routerLink]="['/gallery', album.folder]">
               <i class="bi bi-images" aria-hidden="true"></i>
-              View full project
+              View full gallery
             </a>
           </div>
 
@@ -132,6 +132,25 @@
       </div>
     </div>
   </section>
+
+  <div class="gallery-modal" *ngIf="activeImage as image" role="dialog" aria-modal="true" [attr.aria-label]="activeAlbum?.title" (click)="closeGalleryModal()">
+    <button class="gallery-modal-close" type="button" aria-label="Close image viewer" (click)="closeGalleryModal(); $event.stopPropagation()">
+      <i class="bi bi-x-lg" aria-hidden="true"></i>
+    </button>
+    <button class="gallery-modal-arrow gallery-modal-arrow-previous" type="button" aria-label="Previous photo" (click)="showPreviousImage(); $event.stopPropagation()">
+      <i class="bi bi-chevron-left" aria-hidden="true"></i>
+    </button>
+    <figure class="gallery-modal-content" (click)="$event.stopPropagation()">
+      <img [src]="image.src" [alt]="image.alt" />
+      <figcaption *ngIf="activeAlbum">
+        <span>{{ activeAlbum.title }}</span>
+        <span>{{ activeImageIndex + 1 }} / {{ activeAlbum.images.length }}</span>
+      </figcaption>
+    </figure>
+    <button class="gallery-modal-arrow gallery-modal-arrow-next" type="button" aria-label="Next photo" (click)="showNextImage(); $event.stopPropagation()">
+      <i class="bi bi-chevron-right" aria-hidden="true"></i>
+    </button>
+  </div>
 
   <section class="section process-band" id="process">
     <div class="container">

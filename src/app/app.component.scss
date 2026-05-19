@@ -372,8 +372,12 @@ h3 {
   display: block;
   overflow: hidden;
   aspect-ratio: 4 / 3;
+  width: 100%;
+  padding: 0;
   background: #111827;
+  border: 0;
   border-radius: 8px;
+  cursor: pointer;
 
   img {
     width: 100%;
@@ -386,6 +390,86 @@ h3 {
   &:focus img {
     transform: scale(1.04);
   }
+}
+
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1080;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(8, 13, 18, 0.92);
+}
+
+.gallery-modal-content {
+  display: grid;
+  gap: 0.8rem;
+  width: min(100%, 1120px);
+  margin: 0;
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 78vh;
+    margin: 0 auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+  }
+
+  figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 800;
+  }
+}
+
+.gallery-modal-close,
+.gallery-modal-arrow {
+  position: absolute;
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  transition: background 160ms ease, transform 160ms ease;
+
+  &:hover,
+  &:focus {
+    background: rgba(255, 255, 255, 0.24);
+    transform: scale(1.04);
+  }
+}
+
+.gallery-modal-close {
+  top: 1.25rem;
+  right: 1.25rem;
+}
+
+.gallery-modal-arrow {
+  top: 50%;
+  transform: translateY(-50%);
+
+  &:hover,
+  &:focus {
+    transform: translateY(-50%) scale(1.04);
+  }
+}
+
+.gallery-modal-arrow-previous {
+  left: clamp(0.75rem, 3vw, 2rem);
+}
+
+.gallery-modal-arrow-next {
+  right: clamp(0.75rem, 3vw, 2rem);
 }
 
 .gallery-page-hero {
@@ -619,5 +703,25 @@ h3 {
   .footer-top {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .gallery-modal {
+    padding-inline: 0.75rem;
+  }
+
+  .gallery-modal-content {
+    width: calc(100% - 4rem);
+
+    figcaption {
+      flex-direction: column;
+      gap: 0.2rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  .gallery-modal-close,
+  .gallery-modal-arrow {
+    width: 42px;
+    height: 42px;
   }
 }
