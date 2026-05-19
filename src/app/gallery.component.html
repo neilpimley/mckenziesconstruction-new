@@ -8,7 +8,7 @@
 
       <ng-container *ngIf="album; else missingAlbum">
         <div class="gallery-page-header">
-          <p class="eyebrow">Project gallery</p>
+          <p class="eyebrow">Past Projects</p>
           <h1>{{ album.title }}</h1>
           <p class="lead">{{ album.summary }}</p>
           <span>{{ album.images.length }} photos</span>
@@ -31,8 +31,8 @@
 
   <ng-template #missingAlbum>
     <div class="not-found-panel">
-      <p class="eyebrow">Gallery not found</p>
-      <h1>Project gallery unavailable</h1>
+      <p class="eyebrow">Past Projects</p>
+      <h1>Project unavailable</h1>
       <p class="lead">Return to the home page to browse the available project albums.</p>
     </div>
   </ng-template>

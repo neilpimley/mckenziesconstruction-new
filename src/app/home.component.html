@@ -15,7 +15,7 @@
               <i class="bi bi-calendar-check" aria-hidden="true"></i>
               Request a quote
             </a>
-            <a class="btn btn-outline-light btn-lg" href="#projects">View recent work</a>
+            <a class="btn btn-outline-light btn-lg" href="#gallery">View past projects</a>
           </div>
           <div class="hero-stats">
             <div>
@@ -78,71 +78,14 @@
           From first survey to final handover, McKenzies Construction keeps the work coordinated, safe and transparent.
         </p>
       </div>
-      <div class="row g-4">
-        <div class="col-md-6 col-xl-3">
-          <article class="service-card">
-            <i class="bi bi-house-up" aria-hidden="true"></i>
-            <h3>Extensions</h3>
-            <p>Kitchen extensions, double-storey additions and structural openings planned around your property.</p>
-          </article>
-        </div>
-        <div class="col-md-6 col-xl-3">
-          <article class="service-card">
-            <i class="bi bi-hammer" aria-hidden="true"></i>
-            <h3>Renovations</h3>
-            <p>Whole-home refurbishments, layout changes, plastering, joinery, flooring and finishing trades.</p>
-          </article>
-        </div>
-        <div class="col-md-6 col-xl-3">
-          <article class="service-card">
-            <i class="bi bi-building-check" aria-hidden="true"></i>
-            <h3>Commercial</h3>
-            <p>Fit-outs, maintenance works and practical upgrades with careful scheduling around business needs.</p>
-          </article>
-        </div>
-        <div class="col-md-6 col-xl-3">
-          <article class="service-card">
-            <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
-            <h3>Patios</h3>
-            <p>Well-finished outdoor spaces that improve daily use and complement the property.</p>
-          </article>
-        </div>
-      </div>
-      <a class="btn btn-dark mt-4" [routerLink]="['/services']">View all services</a>
-    </div>
-  </section>
-
-  <section class="section split-section" id="projects">
-    <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-5">
-          <p class="eyebrow">Recent work</p>
-          <h2>Built neatly, managed properly and finished to a high standard</h2>
-          <p>
-            The team handles the details that keep a build moving: site access, materials, subcontractors, inspections
-            and a clean handover.
-          </p>
-          <a class="btn btn-dark" href="#contact">Discuss your project</a>
-        </div>
-        <div class="col-lg-7">
-          <div class="project-grid">
-            <article class="project-card">
-              <span>01</span>
-              <h3>Rear kitchen extension</h3>
-              <p>Structural steelwork, roof lantern, brick match and open-plan internal finish.</p>
-            </article>
-            <article class="project-card">
-              <span>02</span>
-              <h3>Office refurbishment</h3>
-              <p>Partitioning, services coordination, flooring and decoration delivered in phases.</p>
-            </article>
-            <article class="project-card">
-              <span>03</span>
-              <h3>Full property renovation</h3>
-              <p>New layout, insulation upgrades, plastering, joinery and final decoration package.</p>
-            </article>
+      <div class="services-detail-grid">
+        <article class="service-detail-card" *ngFor="let service of services">
+          <i class="bi" [ngClass]="service.icon" aria-hidden="true"></i>
+          <div>
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
@@ -150,7 +93,7 @@
   <section class="section gallery-section" id="gallery">
     <div class="container">
       <div class="section-heading">
-        <p class="eyebrow">Gallery</p>
+        <p class="eyebrow">Past Projects</p>
         <h2>Previous work</h2>
         <p>Browse project albums from recent McKenzies Construction work.</p>
       </div>
@@ -175,7 +118,7 @@
           <div class="album-actions" *ngIf="album.images.length > 6">
             <a class="btn btn-dark" [routerLink]="['/gallery', album.folder]">
               <i class="bi bi-images" aria-hidden="true"></i>
-              View full gallery
+              View full project
             </a>
           </div>
 

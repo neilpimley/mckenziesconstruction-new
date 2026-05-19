@@ -16,10 +16,8 @@
     </button>
     <div class="collapse navbar-collapse" id="mainNavigation">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/services']" routerLinkActive="active">Services</a></li>
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/']" fragment="owner">Owner</a></li>
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/']" fragment="projects">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/']" fragment="gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/']" fragment="services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/']" fragment="gallery">Past Projects</a></li>
         <li class="nav-item"><a class="nav-link" [routerLink]="['/']" fragment="process">Process</a></li>
         <li class="nav-item"><a class="nav-link" [routerLink]="['/']" fragment="contact">Contact</a></li>
         <li class="nav-item ms-lg-2">
@@ -43,9 +41,8 @@
         <p class="mb-0">&copy; 2026 McKenzies Construction. All rights reserved.</p>
       </div>
       <div class="footer-links">
-        <a [routerLink]="['/services']">Services</a>
-        <a [routerLink]="['/']" fragment="projects">Projects</a>
-        <a [routerLink]="['/']" fragment="gallery">Gallery</a>
+        <a [routerLink]="['/']" fragment="services">Services</a>
+        <a [routerLink]="['/']" fragment="gallery">Past Projects</a>
         <a [routerLink]="['/']" fragment="contact">Contact</a>
       </div>
     </div>
