@@ -72,7 +72,7 @@ export class HomeComponent {
   });
 
   get albums(): GalleryAlbum[] {
-    return galleryAlbums;
+    return [...galleryAlbums].reverse();
   }
 
   previewImages(album: GalleryAlbum): GalleryImage[] {
